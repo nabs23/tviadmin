@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('/', function () {
+	return view('welcome');
+});
 
 
 Auth::routes();
@@ -19,9 +22,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('school/create', 'SchoolController@create')->name('school.create');
 	Route::post('school/create', 'SchoolController@store')->name('school.create');
 	Route::group(['middleware' => 'checkschool'], function(){
-		Route::get('/', function () {
-			return view('welcome');
-		});
+		
 		Route::get('/home', 'HomeController@index')->name('home');
 	});
 });
